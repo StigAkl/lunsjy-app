@@ -7,7 +7,6 @@ import { Container } from 'semantic-ui-react';
 import { DashBoard } from './Components/DashBoard';
 import styled from 'styled-components'; 
 
-
 const Title = styled.h3`
   color: darkblue;
   padding: 5px;  
