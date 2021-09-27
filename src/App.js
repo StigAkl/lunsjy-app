@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components'; 
+import { Theme } from './Components/Themes/themes'; 
+import { Nav } from './Components/NavBar/Nav' 
+import { useEffect, useState } from 'react'; 
+import { Jokes } from './api/agent'; 
+import { Container } from 'semantic-ui-react'; 
+import { DashBoard } from './Components/DashBoard';
+import styled from 'styled-components'; 
 
+
+const Title = styled.h3`
+  color: darkblue;
+  padding: 5px;  
+`
 function App() {
+
+  const [jokes, setJokes] = useState([]); 
+
+useEffect(() => {
+  Jokes.list().then(response => {
+      setJokes(response); 
+  })
+})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={Theme}>
+        <Nav />
+        <Container style={{ marginTop: "7em" }}>
+          <Title>Antall aktive vitser: { 7 }</Title>
+          <DashBoard />
+        </Container>
+      </ThemeProvider>
   );
 }
 
