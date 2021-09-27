@@ -1,6 +1,7 @@
 import { Button, Item, Segment } from "semantic-ui-react";
 
 export const JokesList = ({ jokes, deleteJoke }) => {
+    console.log(jokes); 
     return (
     <Segment raised>
         <Item.Group divided>

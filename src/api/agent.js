@@ -1,6 +1,6 @@
 import axios from 'axios'; 
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_LOCALHOST; //process.env.REACT_APP_BASE_URL; 
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 axios.defaults.headers.common['Authorization'] = process.env.REACT_APP_API_TOKEN; 
 
 const responseBody = (response) => response.data; 
@@ -13,8 +13,8 @@ const requests = {
 }
 
 export const Jokes = {
-    list: () => requests.get("/api/list"),
-    create: (data) => requests.post("/api/post", data, { 
+    list: () => requests.get("/api/joke/list"),
+    create: (data) => requests.post("/api/joke", data, { 
         headers: {
         'Content-Type': 'application/json' 
         }
