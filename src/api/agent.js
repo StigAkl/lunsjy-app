@@ -1,7 +1,8 @@
 import axios from 'axios'; 
+import { getToken } from '../utils/auth'; 
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
-axios.defaults.headers.common['Authorization'] = process.env.REACT_APP_API_TOKEN; 
+axios.defaults.headers.common['Authorization'] = getToken();
 
 const responseBody = (response) => response.data; 
 const responseStatus = (response) => response.status; 
@@ -21,3 +22,18 @@ export const Jokes = {
     }),
     delete: (id) => requests.delete(`/api/joke/${id}`)
 }; 
+
+export const Auth = {
+    authenticate: (data) => requests.post('/api/auth', data, { 
+        headers: {
+        'Content-Type': 'application/json' 
+        }}),
+    verify: (data) => requests.post('/api/verify', data, { 
+        headers: {
+        'Content-Type': 'application/json' 
+        }
+    }),
+    setAuthHeader: (token) => {
+        axios.defaults.headers.common['Authorization'] = getToken();
+    }
+}
