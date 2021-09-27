@@ -1,17 +1,19 @@
 import { Button, Item, Segment } from "semantic-ui-react";
 
-export const JokesList = () => {
+export const JokesList = ({ jokes, deleteJoke }) => {
     return (
     <Segment raised>
         <Item.Group divided>
-            {[0,1,2,3,4,5,6].map((joke) => (
-                <Item key={joke}>
+            {jokes.map((joke) => (
+                <Item key={joke._id}>
                     <Item.Content>
-                        <Item.Description as="a">Dette er en kjempe god joke</Item.Description>
+                        <Item.Description as="a">
+                            <NewlineText text={joke.text}  />
+                        </Item.Description>
                     </Item.Content>
                     <Item.Content>
-                        <Button color="red" floated="right">Slett</Button>
-                        <Button color="blue" floated="right">Rediger</Button>
+                        <Button color="red" floated="right" onClick={() => deleteJoke(joke._id)}>Slett</Button>
+                        <Button color="blue" floated="right" disabled>Rediger</Button>
                     </Item.Content>
                 </Item>
             ))}
@@ -19,3 +21,8 @@ export const JokesList = () => {
     </Segment>
       );
     };
+
+
+    const NewlineText = ({text}) => {
+        return text.split('\n').map(str => <p>{str}</p>); 
+    }

@@ -1,4 +1,4 @@
-import { Menu, Container, Button, Icon, Label } from 'semantic-ui-react'; 
+import { Menu, Container } from 'semantic-ui-react'; 
 import styled from 'styled-components'; 
 
 const StyledMenu = styled(Menu)`
