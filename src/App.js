@@ -53,9 +53,8 @@ function App() {
       const token = (await Auth.authenticate({
         secret: password
       })).token; 
-      console.log("TOKEN: " + token); 
+       
       if(token) {
-        console.log(token)
         setToken(token); 
         setIsAuthenticated(true); 
         Auth.setAuthHeader(token); 
